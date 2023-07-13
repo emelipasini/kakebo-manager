@@ -8,11 +8,8 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "plugins": [
-        "@typescript-eslint" // For TypeScript.
-    ],
+    "plugins": ["@typescript-eslint"],
     "overrides": [
-        // Use `overrides` so ESLint can check both JS and TS files.
         {
             "files": ["*.ts", "*.tsx"],
             "extends": [
@@ -27,11 +24,12 @@
     ],
     "ignorePatterns": [".eslintrc.js"],
     "rules": {
-        //"quotes": ["error", "double"], // Use double quotes.
-        "quotes": "off", // note you must disable the base rule as it can report incorrect errors.
-        "@typescript-eslint/quotes": ["error", "dobule"],
-        "semi": ["error", "always"], // Always add a semicolon at the end statements.
-        "indent": ["error", 4], // Indentation is two spaces.
-        "no-console": "error" // Avoid using methods on `console` in the code.
+        "semi": "off",
+        "quotes": "off",
+        "@typescript-eslint/semi": "off",
+        "@typescript-eslint/quotes": ["error", "double"],
+        "@typescript-eslint/space-before-function-paren": "off",
+        "@typescript-eslint/indent": ["error", 4],
+        "no-console": "warn"
     }
 }
