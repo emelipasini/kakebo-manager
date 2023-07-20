@@ -1,6 +1,5 @@
 const enum ExpenseType {
     Income = "Income",
-    Expense = "Expense",
     Fixed = "Fixed",
     Necessary = "Necessary",
     Treat = "Treat",

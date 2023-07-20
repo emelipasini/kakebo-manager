@@ -30,6 +30,20 @@
         "@typescript-eslint/quotes": ["error", "double"],
         "@typescript-eslint/space-before-function-paren": "off",
         "@typescript-eslint/indent": ["error", 4],
+        "@typescript-eslint/comma-dangle": ["error", "only-multiline"],
+        "@typescript-eslint/member-delimiter-style": [
+            "error",
+            {
+                "multiline": {
+                    "delimiter": "semi",
+                    "requireLast": true
+                },
+                "singleline": {
+                    "delimiter": "semi",
+                    "requireLast": false
+                }
+            }
+        ],
         "no-console": "warn"
     }
 }
