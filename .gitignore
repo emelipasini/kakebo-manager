@@ -9,6 +9,9 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 # Compiled files
 dist
 
+# JSON Database files
+database/
+
 # Dependency directories
 node_modules/
 

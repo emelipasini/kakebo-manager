@@ -5,6 +5,9 @@ import savingQuestions from "./questions/saving.js";
 
 import type ExpenseType from "./types/expense-type.js";
 
+import { saveExpense } from "./services/expense.js";
+import { saveSaving } from "./services/saving.js";
+
 /* eslint-disable no-console */
 console.log("\n====== Kakebo Manager ======\n");
 
@@ -21,8 +24,8 @@ inquirer
                 .prompt(expenseQuestions)
                 .then((answers: { description: string; amount: number; type: ExpenseType }) => {
                     console.log("\n============================");
-                    console.log("\nAdded expense:");
-                    console.log(JSON.stringify(answers, null, "  "));
+                    const newExpense = saveExpense(answers.description, answers.amount, answers.type);
+                    console.log(newExpense);
                 })
                 .catch((error) => {
                     console.error(error);
@@ -30,10 +33,10 @@ inquirer
         } else if (answers.menu === "Add saving") {
             inquirer
                 .prompt(savingQuestions)
-                .then((answers) => {
+                .then((answers: { description: string; amount: number }) => {
                     console.log("\n============================");
-                    console.log("\nAdded saving:");
-                    console.log(JSON.stringify(answers, null, "  "));
+                    const newSaving = saveSaving(answers.description, answers.amount);
+                    console.log(newSaving);
                 })
                 .catch((error) => {
                     console.error(error);
