@@ -1,3 +1,9 @@
+import inquirer from "inquirer";
+
+import { saveExpense } from "../services/expense.js";
+
+import { menu, printData } from "../index.js";
+
 import ExpenseType from "../types/expense-type.js";
 
 const expenseQuestions = [
@@ -37,4 +43,15 @@ const expenseQuestions = [
     },
 ];
 
-export default expenseQuestions;
+export default function addExpense(): void {
+    inquirer
+        .prompt(expenseQuestions)
+        .then((answers: { description: string; amount: number; type: ExpenseType }) => {
+            const newExpense = saveExpense(answers.description, answers.amount, answers.type);
+            printData(newExpense);
+            menu();
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+}

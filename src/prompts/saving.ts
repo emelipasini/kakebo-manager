@@ -1,3 +1,9 @@
+import inquirer from "inquirer";
+
+import { saveSaving } from "../services/saving.js";
+
+import { menu, printData } from "../index.js";
+
 const savingQuestions = [
     {
         type: "input",
@@ -19,4 +25,15 @@ const savingQuestions = [
     },
 ];
 
-export default savingQuestions;
+export default function addSaving(): void {
+    inquirer
+        .prompt(savingQuestions)
+        .then((answers: { description: string; amount: number }) => {
+            const newSaving = saveSaving(answers.description, answers.amount);
+            printData(newSaving);
+            menu();
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+}
