@@ -1,5 +1,5 @@
-import { resolve, dirname } from "path";
-import { writeFileSync } from "fs";
+import { resolve, dirname } from "node:path";
+import { writeFileSync } from "node:fs";
 
 import type ExpenseType from "../types/expense-type.js";
 

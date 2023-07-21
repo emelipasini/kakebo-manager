@@ -1,4 +1,4 @@
-import { type UUID, randomUUID } from "crypto";
+import { type UUID, randomUUID } from "node:crypto";
 
 class Saving {
     id: UUID;

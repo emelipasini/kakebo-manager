@@ -1,6 +1,6 @@
-import { type UUID, randomUUID } from "crypto";
+import { type UUID, randomUUID } from "node:crypto";
 
-import type ShortDate from "../types/short-date";
+import type ShortDate from "../types/short-date.js";
 
 class Budget {
     id: UUID;

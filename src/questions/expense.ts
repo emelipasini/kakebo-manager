@@ -1,4 +1,4 @@
-import ExpenseType from "../types/expense-type";
+import ExpenseType from "../types/expense-type.js";
 
 const expenseQuestions = [
     {
