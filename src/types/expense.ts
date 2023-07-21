@@ -1,6 +1,6 @@
 import { type UUID, randomUUID } from "node:crypto";
 
-import type ExpenseType from "../types/expense-type.js";
+import type ExpenseType from "./expense-type.js";
 
 class Expense {
     id: UUID;

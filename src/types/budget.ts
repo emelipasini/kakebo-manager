@@ -1,8 +1,8 @@
 import { type UUID, randomUUID } from "node:crypto";
 
-import type ShortDate from "../types/short-date.js";
+import type ShortDate from "./short-date.js";
 
-class Balance {
+class Budget {
     id: UUID;
     date: ShortDate;
     income: number;
@@ -38,4 +38,4 @@ class Balance {
     }
 }
 
-export default Balance;
+export default Budget;
