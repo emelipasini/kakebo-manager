@@ -1,4 +1,4 @@
-class ExpenseAmounts {
+class BalanceData {
     income: number;
     fixed: number;
     necessary: number;
@@ -32,4 +32,4 @@ class ExpenseAmounts {
     }
 }
 
-export default ExpenseAmounts;
+export default BalanceData;

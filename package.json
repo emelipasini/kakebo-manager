@@ -25,6 +25,7 @@
     "author": "emelipasini",
     "license": "MIT",
     "dependencies": {
+        "chalk": "^5.3.0",
         "config": "^3.3.9",
         "inquirer": "^9.2.8"
     },
