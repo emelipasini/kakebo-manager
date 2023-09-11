@@ -9,22 +9,22 @@ export default function seePartialBalance(): void {
 
     console.log(chalk.magenta("\n============= Partial balance ============\n"));
 
-    console.log(`+ Income (${balanceData.incomeCant}): €${balanceData.income}`);
-    console.log(`+ Saving (${balanceData.savingCant}): €${balanceData.saving}`);
-    console.log(chalk.green(`Total: €${balanceData.income + balanceData.saving}\n`));
+    console.log(`+ Income (${balanceData.incomeCant}): ${balanceData.income}€`);
+    console.log(`+ Saving (${balanceData.savingCant}): ${balanceData.saving}€`);
+    console.log(chalk.green(`Total: ${balanceData.income + balanceData.saving}€\n`));
 
-    console.log(`- Fixed (${balanceData.fixedCant}): €${balanceData.fixed}`);
-    console.log(`- Necessary (${balanceData.necessaryCant}): €${balanceData.necessary}`);
-    console.log(`- Treat (${balanceData.treatCant}): €${balanceData.treat}`);
-    console.log(`- Culture (${balanceData.cultureCant}): €${balanceData.culture}`);
-    console.log(`- Extra (${balanceData.extraCant}): €${balanceData.extra}`);
-    console.log(chalk.red(`Total: €${totalExpenses}`));
+    console.log(`- Fixed (${balanceData.fixedCant}): ${balanceData.fixed}€`);
+    console.log(`- Necessary (${balanceData.necessaryCant}): ${balanceData.necessary}€`);
+    console.log(`- Treat (${balanceData.treatCant}): ${balanceData.treat}€`);
+    console.log(`- Culture (${balanceData.cultureCant}): ${balanceData.culture}€`);
+    console.log(`- Extra (${balanceData.extraCant}): ${balanceData.extra}€`);
+    console.log(chalk.red(`Total: ${totalExpenses}€`));
 
     console.log(
         chalk.blue(
-            `\nDays left: ${daysLeft} - ${monthLeftPercentage}% | Money left: €${
+            `\nDays left: ${daysLeft} - ${monthLeftPercentage}% | Money left: ${
                 balanceData.income - totalExpenses
-            } - ${moneyLeftPercentage}%`
+            }€ - ${moneyLeftPercentage}%`
         )
     );
     console.log(chalk.magenta("\n==========================================\n"));

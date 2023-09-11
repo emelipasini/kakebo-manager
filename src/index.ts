@@ -18,7 +18,7 @@ export function menu(): void {
             type: "list",
             name: "menu",
             message: "What would you like to do?",
-            choices: ["Add expense", "Add saving", "Create budget", "Consult partial balance", "Exit"],
+            choices: ["Add expense", "Add saving", "Consult partial balance", "Exit"],
         })
         .then((answers: { menu: string }) => {
             if (answers.menu === "Add expense") {
