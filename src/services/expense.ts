@@ -5,7 +5,7 @@ import Expense from "../types/expense.js";
 
 import type ExpenseType from "../types/expense-type.js";
 
-const DB_PATH = resolve(dirname("."), "database/expenses.json");
+const DB_PATH = resolve(dirname("."), "database", "expenses.json");
 
 const getExpenses = (): Expense[] => {
     const data: string = readFileSync(DB_PATH, "utf8");

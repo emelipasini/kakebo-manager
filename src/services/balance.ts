@@ -56,8 +56,12 @@ export const calculateBalanceStatistics = (
 } => {
     const totalExpenses =
         balanceData.fixed + balanceData.necessary + balanceData.treat + balanceData.culture + balanceData.extra;
-    const moneySpend = (totalExpenses * 100) / balanceData.income;
-    const moneyLeftPercentage = Math.round(100 - moneySpend);
+
+    let moneyLeftPercentage = 0;
+    if (balanceData.income > 0) {
+        const moneySpend = (totalExpenses * 100) / balanceData.income;
+        moneyLeftPercentage = Math.round(100 - moneySpend);
+    }
 
     const today = new Date();
     const lastDayOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0);

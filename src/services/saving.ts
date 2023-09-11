@@ -3,7 +3,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 
 import Saving from "../types/saving.js";
 
-const DB_PATH = resolve(dirname("."), "database/savings.json");
+const DB_PATH = resolve(dirname("."), "database", "savings.json");
 
 const getSavings = (): Saving[] => {
     const data: string = readFileSync(DB_PATH, "utf8");
