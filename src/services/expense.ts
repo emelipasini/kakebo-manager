@@ -13,10 +13,10 @@ const getExpenses = (): Expense[] => {
     return expenses;
 };
 
-export const getMonthExpenses = (): Expense[] => {
+export const getMonthExpenses = (month?: number, year?: number): Expense[] => {
     const expenses = getExpenses();
-    const month = new Date().getMonth();
-    const year = new Date().getFullYear();
+    month = month ?? new Date().getMonth();
+    year = year ?? new Date().getFullYear();
     return expenses.filter(
         (expense) => new Date(expense.date).getMonth() === month && new Date(expense.date).getFullYear() === year
     );

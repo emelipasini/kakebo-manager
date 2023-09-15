@@ -11,10 +11,10 @@ const getSavings = (): Saving[] => {
     return savings;
 };
 
-export const getMonthSavings = (): Saving[] => {
+export const getMonthSavings = (month?: number, year?: number): Saving[] => {
     const savings = getSavings();
-    const month = new Date().getMonth();
-    const year = new Date().getFullYear();
+    month = month ?? new Date().getMonth();
+    year = year ?? new Date().getFullYear();
     return savings.filter(
         (saving) => new Date(saving.date).getMonth() === month && new Date(saving.date).getFullYear() === year
     );
