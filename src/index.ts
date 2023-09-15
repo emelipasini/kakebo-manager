@@ -4,7 +4,7 @@ import chalk from "chalk";
 
 import addExpense from "./prompts/expense.js";
 import addSaving from "./prompts/saving.js";
-import seePartialBalance from "./prompts/balance.js";
+import { seePartialBalance, seeLastMonthBalance } from "./prompts/balance.js";
 
 import type Saving from "./types/saving.js";
 import type Expense from "./types/expense.js";
@@ -18,15 +18,17 @@ export function menu(): void {
             type: "list",
             name: "menu",
             message: "What would you like to do?",
-            choices: ["Add expense", "Add saving", "Consult partial balance", "Exit"],
+            choices: ["Add expense", "Add saving", "Partial balance", "Last month balance", "Exit"],
         })
         .then((answers: { menu: string }) => {
             if (answers.menu === "Add expense") {
                 addExpense();
             } else if (answers.menu === "Add saving") {
                 addSaving();
-            } else if (answers.menu === "Consult partial balance") {
+            } else if (answers.menu === "Partial balance") {
                 seePartialBalance();
+            } else if (answers.menu === "Last month balance") {
+                seeLastMonthBalance();
             } else if (answers.menu === "Exit") {
                 exit();
             }

@@ -1,8 +1,8 @@
 import chalk from "chalk";
 
-import { calculateBalanceStatistics, getBalanceData } from "../services/balance.js";
+import { calculateBalanceStatistics, getBalanceData, getLastBalance } from "../services/balance.js";
 
-export default function seePartialBalance(): void {
+export function seePartialBalance(): void {
     const balanceData = getBalanceData();
     const { daysLeft, monthLeftPercentage, moneyLeftPercentage, totalExpenses } =
         calculateBalanceStatistics(balanceData);
@@ -27,5 +27,28 @@ export default function seePartialBalance(): void {
             }€ - ${moneyLeftPercentage}%`
         )
     );
+    console.log(chalk.magenta("\n==========================================\n"));
+}
+
+export function seeLastMonthBalance(): void {
+    const lastBalance = getLastBalance();
+    const totalExpenses =
+        lastBalance.fixed + lastBalance.necessary + lastBalance.treat + lastBalance.culture + lastBalance.extra;
+
+    console.log(chalk.magenta(`\n=========== Balance ${lastBalance.date} ==========\n`));
+
+    console.log(`Income: ${lastBalance.income}€`);
+    console.log(`Saving: ${lastBalance.saving}€`);
+    console.log(chalk.green(`Total: ${lastBalance.income + lastBalance.saving}€\n`));
+
+    console.log(`Fixed: ${lastBalance.fixed}€`);
+    console.log(`Necessary: ${lastBalance.necessary}€`);
+    console.log(`Treat: ${lastBalance.treat}€`);
+    console.log(`Culture: ${lastBalance.culture}€`);
+    console.log(`Extra: ${lastBalance.extra}€`);
+    console.log(chalk.red(`Total: ${totalExpenses}€`));
+
+    console.log(chalk.blue(`\nMoney left: ${lastBalance.income - totalExpenses}€`));
+
     console.log(chalk.magenta("\n==========================================\n"));
 }

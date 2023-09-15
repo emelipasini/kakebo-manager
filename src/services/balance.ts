@@ -1,15 +1,57 @@
+import { resolve, dirname } from "node:path";
+import { readFileSync, writeFileSync } from "node:fs";
+
 import { getMonthExpenses } from "./expense.js";
 import { getMonthSavings } from "./saving.js";
 
 import ExpenseType from "../types/expense-type.js";
 import BalanceData from "../types/balance-data.js";
+import Balance from "../types/balance.js";
+import { getShortDate, getMonthYearFromShortDate } from "../types/short-date.js";
 
 import type Expense from "../types/expense.js";
 import type Saving from "../types/saving.js";
 
-export const getBalanceData = (): BalanceData => {
-    const expenses = getMonthExpenses();
-    const savings = getMonthSavings();
+const DB_PATH = resolve(dirname("."), "database", "balances.json");
+
+export const getLastBalance = (): Balance => {
+    const data: string = readFileSync(DB_PATH, "utf8");
+    const balances: Balance[] = JSON.parse(data) as Balance[];
+
+    const date = getShortDate({ lastMonth: true });
+
+    let lastBalance = balances.find((balance) => balance.date === date);
+    if (typeof lastBalance === "undefined") {
+        lastBalance = createBalance();
+        balances.push(lastBalance);
+        writeFileSync(DB_PATH, JSON.stringify(balances));
+    }
+
+    return lastBalance;
+};
+
+const createBalance = (): Balance => {
+    const date = getShortDate({ lastMonth: true });
+    const { month, year } = getMonthYearFromShortDate(date);
+
+    const data = getBalanceData(month, year);
+    const balance = new Balance(
+        date,
+        data.income,
+        data.fixed,
+        data.necessary,
+        data.saving,
+        data.treat,
+        data.culture,
+        data.extra
+    );
+
+    return balance;
+};
+
+export const getBalanceData = (month?: number, year?: number): BalanceData => {
+    const expenses = getMonthExpenses(month, year);
+    const savings = getMonthSavings(month, year);
 
     const data = getDataByCategory(expenses, savings);
     return data;
