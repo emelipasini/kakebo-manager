@@ -9,4 +9,38 @@ Kakebo specifies 4 pillars or categories of spending:
 -   Culture: any spending on cultural activities — books, museum fees, concert tickets, TV streaming services, etc.
 -   Extra: other expenses that crop up, like medical bills or home repairs.
 
-To these categories I added a fifth: `Fixed` for expenses that are fixed and are not going to change in the near future. For example, the rent of the house or the car payment
+To these categories I added a fifth: `Fixed` for expenses that are fixed and are not going to change in the near future. For example, the rent of the house or the car payment.
+
+## Menu
+
+The menu allows you to do the following actions:
+
+-   Add expense/income: add a new expense, to simplify incomes are a type of expenses, it is indicated with the type of expense `income`.
+-   Add/Subtract saving: add a new saving, savings can be positive or negative. If you spend money from your savings you can add a negative one.
+-   Partial balance: show the partial balance of the month with days and money left.
+-   Last month balance: show the balance of the last month.
+
+## Structure
+
+src/
+
+-   prompts: console printing related
+-   services: business logic
+-   type: classes and types
+-   index.ts: menu
+
+## How to use
+
+First of all you need to install the dependencies and then build the project
+
+```bash
+npm install
+
+npm run build
+```
+
+Then you can run the project with
+
+```bash
+npm start
+```

@@ -10,7 +10,10 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 dist
 
 # JSON Database files
-database/
+database/balances.json
+database/budgets.json
+database/expenses.json
+database/savings.json
 
 # Dependency directories
 node_modules/

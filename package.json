@@ -17,7 +17,12 @@
     },
     "keywords": [
         "typescript",
-        "node"
+        "node",
+        "chalk",
+        "inquirer",
+        "eslint",
+        "husky",
+        "commitlint"
     ],
     "author": "emelipasini",
     "license": "MIT",

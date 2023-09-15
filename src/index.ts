@@ -18,12 +18,12 @@ export function menu(): void {
             type: "list",
             name: "menu",
             message: "What would you like to do?",
-            choices: ["Add expense", "Add saving", "Partial balance", "Last month balance", "Exit"],
+            choices: ["Add expense/income", "Add/Subtract saving", "Partial balance", "Last month balance", "Exit"],
         })
         .then((answers: { menu: string }) => {
-            if (answers.menu === "Add expense") {
+            if (answers.menu === "Add expense/income") {
                 addExpense();
-            } else if (answers.menu === "Add saving") {
+            } else if (answers.menu === "Add/Subtract saving") {
                 addSaving();
             } else if (answers.menu === "Partial balance") {
                 seePartialBalance();
