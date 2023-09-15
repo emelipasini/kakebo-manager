@@ -14,6 +14,7 @@ class Budget {
     extra: number;
 
     constructor(
+        date: ShortDate,
         income: number,
         fixed: number,
         necessary: number,
@@ -22,12 +23,8 @@ class Budget {
         culture: number,
         extra: number
     ) {
-        const time = new Date();
-        const month = time.toLocaleDateString("en-US", { month: "long" });
-        const year = time.getFullYear();
-
         this.id = randomUUID();
-        this.date = `${month} ${year}`;
+        this.date = date;
         this.income = income;
         this.fixed = fixed;
         this.necessary = necessary;
