@@ -3,7 +3,7 @@ import inquirer from "inquirer";
 import chalk from "chalk";
 
 import addExpense from "./prompts/expense.js";
-import addSaving from "./prompts/saving.js";
+import { addSaving, checkSavings } from "./prompts/saving.js";
 import { seePartialBalance, seeLastMonthBalance } from "./prompts/balance.js";
 
 import type Saving from "./types/saving.js";
@@ -18,16 +18,25 @@ export function menu(): void {
             type: "list",
             name: "menu",
             message: "What would you like to do?",
-            choices: ["Add expense/income", "Add/Subtract saving", "Partial balance", "Last month balance", "Exit"],
+            choices: [
+                "Add expense/income",
+                "Add/Subtract saving",
+                "Check savings",
+                "See partial balance",
+                "See last month balance",
+                "Exit",
+            ],
         })
         .then((answers: { menu: string }) => {
             if (answers.menu === "Add expense/income") {
                 addExpense();
             } else if (answers.menu === "Add/Subtract saving") {
                 addSaving();
-            } else if (answers.menu === "Partial balance") {
+            } else if (answers.menu === "Check savings") {
+                checkSavings();
+            } else if (answers.menu === "See partial balance") {
                 seePartialBalance();
-            } else if (answers.menu === "Last month balance") {
+            } else if (answers.menu === "See last month balance") {
                 seeLastMonthBalance();
             } else if (answers.menu === "Exit") {
                 exit();

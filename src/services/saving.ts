@@ -27,3 +27,25 @@ export const saveSaving = (description: string, amount: number): Saving => {
     writeFileSync(DB_PATH, JSON.stringify(savings));
     return newSaving;
 };
+
+export const getTotalSavings = (): { totalSavings: number; savingsByMonth: Record<string, number> } => {
+    const savings = getSavings();
+
+    const savingsByMonth = savings.reduce<Record<string, number>>((acc, saving) => {
+        const date = new Date(saving.date);
+
+        const month = date.toLocaleDateString("en-US", { month: "long" });
+        const year = date.getFullYear();
+
+        const key = `${month} ${year}`;
+        if (acc[key] === undefined) {
+            acc[key] = 0;
+        }
+        acc[key] = acc[key] + parseFloat(saving.amount as unknown as string);
+        return acc;
+    }, {});
+
+    const totalSavings = savings.reduce((acc, saving) => acc + parseFloat(saving.amount as unknown as string), 0);
+
+    return { totalSavings, savingsByMonth };
+};

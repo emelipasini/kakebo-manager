@@ -1,6 +1,7 @@
 import inquirer from "inquirer";
+import chalk from "chalk";
 
-import { saveSaving } from "../services/saving.js";
+import { saveSaving, getTotalSavings } from "../services/saving.js";
 
 import { menu, printData } from "../index.js";
 
@@ -25,7 +26,7 @@ const savingQuestions = [
     },
 ];
 
-export default function addSaving(): void {
+export function addSaving(): void {
     inquirer
         .prompt(savingQuestions)
         .then((answers: { description: string; amount: number }) => {
@@ -37,3 +38,19 @@ export default function addSaving(): void {
             console.error(error);
         });
 }
+
+export const checkSavings = (): void => {
+    const { totalSavings, savingsByMonth } = getTotalSavings();
+
+    console.log(chalk.magenta("\n================= Savings ================\n"));
+
+    Object.entries(savingsByMonth).forEach(([monthYear, amount]) => {
+        console.log(`${monthYear}: ${amount}€`);
+    });
+
+    console.log(chalk.green(`\nTotal: ${totalSavings}€`));
+
+    console.log(chalk.magenta("\n==========================================\n"));
+
+    menu();
+};
