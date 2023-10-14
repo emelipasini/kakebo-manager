@@ -9,6 +9,17 @@ import ExpenseType from "../types/expense-type.js";
 const expenseQuestions = [
     {
         type: "input",
+        name: "date",
+        message: "Expense date:",
+        default: new Date().toLocaleDateString("en-GB"),
+        validate(value: string) {
+            const [day, month, year] = value.split("/");
+            const valid = new Date(+year, +month, +day).toString() !== "Invalid Date";
+            return valid || "Please enter a date";
+        },
+    },
+    {
+        type: "input",
         name: "description",
         message: "Expense description:",
         validate(value: string) {
@@ -46,8 +57,8 @@ const expenseQuestions = [
 export default function addExpense(): void {
     inquirer
         .prompt(expenseQuestions)
-        .then((answers: { description: string; amount: number; type: ExpenseType }) => {
-            const newExpense = saveExpense(answers.description, answers.amount, answers.type);
+        .then((answers: { date: string; description: string; amount: number; type: ExpenseType }) => {
+            const newExpense = saveExpense(answers.description, answers.amount, answers.type, answers.date);
             printData(newExpense);
             menu();
         })

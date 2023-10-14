@@ -22,8 +22,8 @@ export const getMonthExpenses = (month?: number, year?: number): Expense[] => {
     );
 };
 
-export const saveExpense = (description: string, amount: number, expenseType: ExpenseType): Expense => {
-    const newExpense = new Expense(description, amount, expenseType);
+export const saveExpense = (description: string, amount: number, expenseType: ExpenseType, date: string): Expense => {
+    const newExpense = new Expense(description, amount, expenseType, date);
     const expenses = getExpenses();
     expenses.push(newExpense);
     writeFileSync(DB_PATH, JSON.stringify(expenses));
