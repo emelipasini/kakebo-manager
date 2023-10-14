@@ -39,6 +39,21 @@ npm install
 npm run build
 ```
 
+Create the files that store the data inside the `database` folder and initialize them with an empty array:
+
+```bash
+cd database
+
+touch expenses.json
+echo [] > expenses.json
+
+touch savings.json
+echo [] > savings.json
+
+touch balances.json
+echo [] > balances.json
+```
+
 Then you can run the project with
 
 ```bash
