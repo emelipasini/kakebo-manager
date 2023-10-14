@@ -11,23 +11,22 @@ import { getShortDate, getMonthYearFromShortDate } from "../types/short-date.js"
 
 import type Expense from "../types/expense.js";
 import type Saving from "../types/saving.js";
+import type ShortDate from "../types/short-date.js";
 
 const DB_PATH = resolve(dirname("."), "database", "balances.json");
 
-export const getLastBalance = (): Balance => {
+export const getBalance = (date: ShortDate): Balance => {
     const data: string = readFileSync(DB_PATH, "utf8");
     const balances: Balance[] = JSON.parse(data) as Balance[];
 
-    const date = getShortDate({ lastMonth: true });
-
-    let lastBalance = balances.find((balance) => balance.date === date);
-    if (typeof lastBalance === "undefined") {
-        lastBalance = createBalance();
-        balances.push(lastBalance);
+    let balance = balances.find((balance) => balance.date === date);
+    if (typeof balance === "undefined") {
+        balance = createBalance();
+        balances.push(balance);
         writeFileSync(DB_PATH, JSON.stringify(balances));
     }
 
-    return lastBalance;
+    return balance;
 };
 
 const createBalance = (): Balance => {

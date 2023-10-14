@@ -4,7 +4,7 @@ import chalk from "chalk";
 
 import addExpense from "./prompts/expense.js";
 import { addSaving, checkSavings } from "./prompts/saving.js";
-import { seePartialBalance, seeLastMonthBalance } from "./prompts/balance.js";
+import { seePartialBalance, seeBalance } from "./prompts/balance.js";
 
 import type Saving from "./types/saving.js";
 import type Expense from "./types/expense.js";
@@ -23,7 +23,7 @@ export function menu(): void {
                 "Add/Subtract saving",
                 "Check savings",
                 "See partial balance",
-                "See last month balance",
+                "See balance",
                 "Exit",
             ],
         })
@@ -36,8 +36,8 @@ export function menu(): void {
                 checkSavings();
             } else if (answers.menu === "See partial balance") {
                 seePartialBalance();
-            } else if (answers.menu === "See last month balance") {
-                seeLastMonthBalance();
+            } else if (answers.menu === "See balance") {
+                seeBalance();
             } else if (answers.menu === "Exit") {
                 exit();
             }
