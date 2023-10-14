@@ -40,8 +40,8 @@ const balanceQuestions = [
     {
         type: "input",
         name: "date",
+        message: "Balance date:",
         default: getShortDate({ lastMonth: true }),
-        message: "Balance date: (Month Year)",
         validate(value: ShortDate) {
             const [monthName, year] = value.split(" ");
             const valid = monthName !== undefined && year !== undefined;

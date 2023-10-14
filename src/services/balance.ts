@@ -7,7 +7,7 @@ import { getMonthSavings } from "./saving.js";
 import ExpenseType from "../types/expense-type.js";
 import BalanceData from "../types/balance-data.js";
 import Balance from "../types/balance.js";
-import { getShortDate, getMonthYearFromShortDate } from "../types/short-date.js";
+import { getMonthYearFromShortDate } from "../types/short-date.js";
 
 import type Expense from "../types/expense.js";
 import type Saving from "../types/saving.js";
@@ -21,7 +21,7 @@ export const getBalance = (date: ShortDate): Balance => {
 
     let balance = balances.find((balance) => balance.date === date);
     if (typeof balance === "undefined") {
-        balance = createBalance();
+        balance = createBalance(date);
         balances.push(balance);
         writeFileSync(DB_PATH, JSON.stringify(balances));
     }
@@ -29,8 +29,7 @@ export const getBalance = (date: ShortDate): Balance => {
     return balance;
 };
 
-const createBalance = (): Balance => {
-    const date = getShortDate({ lastMonth: true });
+const createBalance = (date: ShortDate): Balance => {
     const { month, year } = getMonthYearFromShortDate(date);
 
     const data = getBalanceData(month, year);
